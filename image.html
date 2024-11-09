@@ -1,0 +1,94 @@
+<div class="service-items">
+  <img src="3.jpg" alt="Our Team" class="about-img">
+  <img src="3.jpg" alt="Our Team" class="about-img">
+  <img src="3.jpg" alt="Our Team" class="about-img">
+  <img src="3.jpg" alt="Our Team" class="about-img">
+</div>
+
+
+
+<!--ITS CSS CODE    IMAGE ENIMATION-->
+
+.container{
+margin:100px 0 0 200px;
+width:70%;
+height:450px;
+display:flex;
+justify-content:center;
+gap:10px;
+}
+.container-img {
+width:10%;
+height:100%;
+object-fit:cover;
+border-radius:10px;
+border:2px solid cyan;
+transition:all ease-in-out 0.5s;
+}
+
+.container-img:hover {
+border-color: blue; /* Lighter border on hover */
+width:25%;
+/*transform: scale(1.05);  Slightly scale up the item
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Add shadow on hover */
+}
+
+
+
+
+
+
+// Handle form submission
+document.addEventListener("DOMContentLoaded", function() {
+// Get the form element
+const form = document.querySelector("form");
+
+// Add an event listener for form submission
+form.addEventListener("submit", function(event) {
+event.preventDefault(); // Prevent the default form submission behavior
+
+// Perform any additional form submission actions here (e.g., send an email)
+
+// Clear the form fields
+form.reset();
+
+// Optionally, display a success message
+alert("Your form has been submitted successfully!");
+
+// Scroll to the contact section after submission (optional)
+document.querySelector("#contact").scrollIntoView({
+behavior: 'smooth'
+});
+});
+
+// Initialize EmailJS with your User ID
+(function() {
+emailjs.init("kBoJO4w3ZoAg8uKIk");  // Replace with your EmailJS User ID
+})();
+
+// Add event listener to the form
+document.getElementById("contact_form").addEventListener("submit", function(event) {
+event.preventDefault();  // Prevent the default form submission
+
+console.log("Form submitted");
+
+// Log form data for debugging
+const formData = new FormData(this);
+for (const [key, value] of formData.entries()) {
+console.log(`${key}: ${value}`);
+//alert(`${key}: ${key.value}`);
+}
+
+// Send form data via EmailJS
+emailjs.sendForm('Form_web', 'template_nfukrbf', this)
+.then(function(response) {
+console.log('SUCCESS!', response.status, response.text);
+alert("Your message has been sent successfully!");
+}, function(error) {
+console.error('FAILED...', error);
+alert("Failed to send the message. Please try again later.");
+});
+});
+
+
+});
